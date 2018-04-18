@@ -1,0 +1,37 @@
+[CIF]
+DISPLAY=0:"VIA XHCI Host Controller Driver"
+COMPONENT_VERSION=" V1.80B"
+DESC=0:"VIA XHCI Host Controller Driver"
+DATE=0x23C,,20111226;0x40F,,20111226;
+
+HWID=1:PCI\VEN_1106&DEV_3432;PCI\VEN_1106&DEV_9201;
+CID={9DCD0809-9D8B-4f1e-9C8B-82B603014180}
+CIFVERSION=1.2
+SIZE=1450
+SHOW=1
+DEFAULTREMOVE=1
+
+[EXEC.9x]
+
+[EXEC.nt]
+
+[EXEC.ntx86]
+;Parameter : bit7: 1 => Support 2.0 Hub
+;            bit6: 1 => Enable Utility
+;            bit0: 1 => Setup UrbTime
+INSTCMD=0x204,,2,xHCInstall.Install_NT5,193,\XP\;0x208,,2,xHCInstall.Install_NT5,193,\SRV2003\;0x210,,2,xHCInstall.Install_NT5,193,\VISTA\;0x220,,2,xHCInstall.Install_NT5,193,\WIN7\;
+UNINSTCMD=0x23C,,2,xHCInstall.Remove_NT5,192,;
+REBOOT=0,1
+
+[EXEC.ntia64]
+
+[EXEC.ntamd64]
+;xHCX64Install.exe parameter : bit7: 1 => Support 2.0 Hub
+;                              bit6: 1 => Enable Utility
+;                              bit5: 1 => Remove
+;                              bit4: 1 => Install
+;                              bit0: 1 => Setup UrbTime
+INSTCMD=0x401,,1,xHCX64Install.exe,,0xD1 \XP\;0x402,,1,xHCX64Install.exe,,0xD1 \SRV2003\;0x404,,1,xHCX64Install.exe,,0xD1 \VISTA\;0x408,,1,xHCX64Install.exe,,0xD1 \WIN7\;
+UNINSTCMD=0x40F,,1,xHCX64Install.exe,,0xE0;
+REBOOT=0,1
+[STRING]

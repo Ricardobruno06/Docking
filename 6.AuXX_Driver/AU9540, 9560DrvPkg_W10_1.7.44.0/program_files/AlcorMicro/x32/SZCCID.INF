@@ -1,0 +1,100 @@
+;==========================================================
+; USB Smart Card Driver, SZCCID.inf
+;==========================================================
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=SmartCardReader
+ClassGuid={50DD5230-BA8A-11D1-BF5D-0000F805F530}
+provider=%MFGNAME%
+CatalogFile=SzCCID.cat
+DriverVer=06/03/2015, 1.7.44.0
+
+
+[Manufacturer]
+%MFGNAME%=DeviceList
+
+[DeviceList]
+"Alcor Micro USB Smart Card Reader"=DriverInstall, USB\VID_058F&PID_9520
+"Alcor Micro USB Smart Card Reader"=DriverInstall, USB\VID_058F&PID_9540
+
+
+;----------------------------------------------------------------------------
+;   CopyFile Sections
+;----------------------------------------------------------------------------
+[SourceDisksNames]
+1="Installation Disc for Alcor Micro USB Smart Card Reader"
+
+[SourceDisksFiles]
+SzCCID.sys=1
+AlcGener.sys=1
+SzCcidV1900.dll=1
+SCPwrSetSvr.exe=1
+CTAlc001.dll=1
+SZCCID.ini=1
+AmUnInstall.ini=1
+X86-Uninstaller.exe=1
+install.ini=1
+
+[DestinationDirs]
+DriverCopyFiles  = 12
+CoInstallCopyFile = 11
+UninStallCopyFile = 24, ProgramData\SZCCID
+
+
+;------------------------------------------------------------------------------
+;  Driver Installation
+;------------------------------------------------------------------------------
+[DriverInstall.NT]
+AddReg=DriverAddReg
+CopyFiles=DriverCopyFiles
+
+[DriverAddReg]
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+HKLM, System\CurrentControlSet\Services\SCardSvr,Start,0x00010001,2
+HKLM, System\CurrentControlSet\Services\CertPropSvc,Start,0x00010001,2
+
+[DriverCopyFiles]
+SzCCID.sys
+AlcGener.sys
+
+;----------------------------------------------------------------------------
+; Co-installer section
+;----------------------------------------------------------------------------
+[DriverInstall.NT.CoInstallers]
+CopyFiles = CoInstallCopyFile, UninStallCopyFile
+AddReg = CoInstallersAddReg
+
+[CoInstallCopyFile]
+SzCcidV1900.dll
+SCPwrSetSvr.exe
+CTAlc001.dll
+SZCCID.ini
+AmUnInstall.ini
+
+[UninStallCopyFile]
+X86-Uninstaller.exe
+install.ini
+
+[CoInstallersAddReg]
+HKR,,CoInstallers32,0x00010000,"SzCcidV1900.dll,CoInstallerProc"
+
+;--------------------------------------------------------------
+[DriverInstall.NT.Services]
+Addservice = SzCCID, 2, DriverService
+
+[DriverService]
+DisplayName    = "USB SmartCard Reader Driver"
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_AUTO_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\SzCCID.sys
+
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+[Strings]
+MFGNAME = "AlcorMicro"
+
+

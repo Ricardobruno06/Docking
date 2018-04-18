@@ -1,0 +1,24 @@
+[SCF]
+COMPANY=1:"VIA Technologies, Inc."
+TITLE=1:"VIA XHCI Host Controller Software Package"
+PACKAGE_VERSION="V1.00"
+PRODUCT=1:"VIA XHCI Host Controller Software Setup Wizard"
+SCFVERSION=1.2
+BGBITMAP=0:0
+LBITMAP=1:165x300.bmp
+MFGICON=1:500x60.bmp
+COMPONENT=xhc;
+ENCRYPT=0
+
+[SERVICE]
+WEB="www.viaarena.com"
+EMAIL="mkt@via.com.tw"
+TEL="+886-2-22185452 Ext.6201"
+
+[SYSTEM]
+MANUFACTURER="<System manufacturer>"
+IDENTIFICATION="<System Signature>"
+
+[STRING]
+000E=1,"Sorry, this package do not support current hardware configuration"
+000F=1,"Sorry, this package do not support current platform"

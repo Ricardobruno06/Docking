@@ -1,0 +1,17 @@
+[BackupFileType]
+AllExtChecked=1
+PictureExtChecked=0
+AudioExtChecked=0
+VideoExtChecked=0
+DataExtChecked=0
+CompressExtChecked=0
+ImageExtChecked=0
+OthersExtChecked=0
+OthersExtString=
+
+[LanguageType]
+Language=0
+
+[Option]
+StartupWithWindows=0
+ClsToSysTray=0

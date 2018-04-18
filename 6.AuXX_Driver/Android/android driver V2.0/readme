@@ -1,0 +1,15 @@
+1.The library is ready. but your usb-file system is almost certainly not mounted yet. 
+In your init.rc of the RFS add the following command to mount your USBFS.
+
+mount usbfs none /proc/bus/usb -o devmode=0666
+
+Add the line somewhere below the ¡°on boot¡± event.
+
+2.Add the follow command to add a dir.
+    mkdir /data/pcsc 01777 root root
+
+3.pcscd.apk==>PC/SC driver.  Install to android then reboot the system.
+
+4.libwinscard.so==>The API for winscrd PC/SC function.
+
+5.pcsctest.java ==>Sample code for libwinscard.
